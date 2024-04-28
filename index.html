@@ -9,45 +9,24 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         header, footer {
-            background-color: #007BFF;
-            color: white;
+            background-color: #f1f1f1;
             padding: 10px 20px;
             text-align: center;
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
+        footer a {
+            margin-right: 10px;
         }
-        input[type="url"], button {
-            padding: 10px;
-            margin: 10px 0;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        .tools-list {
-            display: flex;
-            justify-content: space-around;
+        .content {
+            flex: 1;
             padding: 20px;
-            background: white;
-            margin-top: 20px;
-        }
-        .tool {
-            text-align: center;
         }
         table {
             width: 100%;
-            margin-top: 20px;
             border-collapse: collapse;
         }
         th, td {
@@ -56,31 +35,44 @@
             text-align: left;
         }
         th {
-            background-color: #007BFF;
+            background-color: #4CAF50;
             color: white;
         }
-        footer a {
-            color: white;
-            text-decoration: none;
+        .check-input {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .check-input input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+            padding: 10px;
+        }
+        .logo {
+            height: 50px;
+            width: auto;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Compare Accessibility Tools</h1>
+        Browser Extensions, Stand-alone API/Testing, Engine Subscription API, AIM Report, Help
     </header>
-    <div class="container">
-        <input type="url" id="website-url" placeholder="Enter website URL here">
-        <button onclick="checkAccessibility()">Check It</button>
-        <div class="tools-list">
-            <div class="tool">
-                <h2>List of Accessibility Testing Tools</h2>
-                <img src="wave-logo.png" alt="WAVE" title="WAVE">
-                <img src="achecker-logo.png" alt="AChecker" title="AChecker">
-                <img src="lighthouse-logo.png" alt="Lighthouse" title="Lighthouse">
-            </div>
+
+    <div class="content">
+        <h1>Compare Accessibility Tools</h1>
+        <div class="check-input">
+            <input type="text" placeholder="Enter URL to check accessibility">
+            <button onclick="checkAccessibility()">Check it</button>
         </div>
-        <table id="results-table" style="display:none;">
+        <h2>List of Accessibility Testing Tools</h2>
+        <img src="dummy-logo.png" alt="WAVE Logo" class="logo">
+        <img src="dummy-logo.png" alt="AChecker Logo" class="logo">
+        <img src="dummy-logo.png" alt="Lighthouse Logo" class="logo">
+
+        <h3>Table of Contents</h3>
+        <table>
             <thead>
                 <tr>
                     <th>Accessible Check</th>
@@ -89,25 +81,36 @@
                     <th>Details</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Results will be inserted here -->
+            <tbody id="results">
+                <!-- Results will be inserted here by JavaScript -->
             </tbody>
         </table>
     </div>
+
     <footer>
-        Contact Us | <a href="https://www.unt.edu/index.html">About</a> | Terms of Use | UNT
+        <a href="https://www.unt.edu/index.html">UNT</a>
+        <a href="#">Contact Us</a>
+        <a href="#">About</a>
+        <a href="#">Terms of Use</a>
     </footer>
+
     <script>
         function checkAccessibility() {
-            var url = document.getElementById('website-url').value;
-            if (url) {
-                // This is where you would add JavaScript to interact with the accessibility APIs
-                alert('Checking Accessibility for: ' + url);
-                // Display table (for example purposes)
-                document.getElementById('results-table').style.display = 'table';
-            } else {
-                alert('Please enter a URL.');
-            }
+            // This function will handle the accessibility check
+            // Here, it simply adds dummy data to the table
+            var results = document.getElementById('results');
+            results.innerHTML += `
+                <tr>
+                    <td>Accessibility Check Name</td>
+                    <td>5 Issues</td>
+                    <td>3 Issues</td>
+                    <td><button onclick="compareDetails()">Compare</button></td>
+                </tr>
+            `;
+        }
+
+        function compareDetails() {
+            alert("Comparison details will be shown here.");
         }
     </script>
 </body>
