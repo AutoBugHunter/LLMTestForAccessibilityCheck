@@ -5,122 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Accessibility Tools</title>
     <style>
-        /* Body and Background Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f4f8; /* Light gray/blue background */
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
-            color: #333;
+            padding: 0;
+            background-color: #f4f4f4;
         }
-
-        /* Header Styling */
-        h1 {
-            text-align: center;
-            color: #0275d8; /* Bootstrap primary blue */
-        }
-
-        /* Table Styling */
-        table {
-            width: 80%;
-            margin: 20px auto; /* Center table and provide spacing */
-            border-collapse: collapse;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-        }
-
-        th, td {
-            border: 1px solid #dee2e6; /* Lighter border color */
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #0275d8; /* Matching header color */
+        header, footer {
+            background-color: #007BFF;
             color: white;
+            padding: 10px 20px;
+            text-align: center;
         }
-
-        /* Input and Button Styles */
-        input[type="text"] {
-            padding: 8px;
-            width: 70%;
-            margin: 10px auto;
-            display: block;
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
         }
-
+        input[type="url"], button {
+            padding: 10px;
+            margin: 10px 0;
+        }
         button {
-            background-color: #5cb85c; /* Bootstrap success green */
+            background-color: #28a745;
             color: white;
             border: none;
-            padding: 10px 20px;
             cursor: pointer;
-            display: block;
-            margin: 10px auto;
         }
-
         button:hover {
-            background-color: #449d44; /* Darker green on hover */
+            background-color: #218838;
         }
-
+        .tools-list {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+        }
+        .tool {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-    <h1>Compare Accessibility Tools</h1>
-    <div style="text-align: center;">
-        <input type="text" id="websiteURL" placeholder="Enter URL to check">
+    <header>
+        <h1>Compare Accessibility Tools</h1>
+    </header>
+    <div class="container">
+        <input type="url" id="website-url" placeholder="Enter website URL here">
         <button onclick="checkAccessibility()">Check It</button>
+        <div class="tools-list">
+            <div class="tool">
+                <h2>List of Accessibility Testing Tools</h2>
+                <img src="wave-logo.png" alt="WAVE" title="WAVE">
+                <img src="achecker-logo.png" alt="AChecker" title="AChecker">
+                <img src="lighthouse-logo.png" alt="Lighthouse" title="Lighthouse">
+            </div>
+        </div>
+        <table id="results-table" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Accessible Check</th>
+                    <th>Accessibility tool1</th>
+                    <th>Accessibility tool2</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Results will be inserted here -->
+            </tbody>
+        </table>
     </div>
-    <table id="resultsTable">
-        <thead>
-            <tr>
-                <th>Accessibility Check</th>
-                <th>Accessibility Tool1</th>
-                <th>Accessibility Tool2</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Results will be populated here by JavaScript -->
-        </tbody>
-    </table>
-
+    <footer>
+        Contact Us | <a href="https://www.unt.edu/index.html">About</a> | Terms of Use | UNT
+    </footer>
     <script>
         function checkAccessibility() {
-            const url = document.getElementById('websiteURL').value;
-            if (!url) {
-                alert('Please enter a URL');
-                return;
+            var url = document.getElementById('website-url').value;
+            if (url) {
+                // This is where you would add JavaScript to interact with the accessibility APIs
+                alert('Checking Accessibility for: ' + url);
+                // Display table (for example purposes)
+                document.getElementById('results-table').style.display = 'table';
+            } else {
+                alert('Please enter a URL.');
             }
-
-            // Example of dummy data
-            const results = [
-                {
-                    check: 'Alt text for images',
-                    tool1: 5,
-                    tool2: 3
-                },
-                {
-                    check: 'Keyboard accessibility',
-                    tool1: 2,
-                    tool2: 2
-                }
-            ];
-
-            const tbody = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
-            tbody.innerHTML = ''; // Clear previous results
-
-            results.forEach(result => {
-                const row = tbody.insertRow();
-                row.insertCell().textContent = result.check;
-                row.insertCell().textContent = result.tool1;
-                row.insertCell().textContent = result.tool2;
-                const compareButton = document.createElement('button');
-                compareButton.textContent = 'Compare';
-                compareButton.onclick = function() {
-                    alert('Comparison details for ' + result.check);
-                };
-                const cell = row.insertCell();
-                cell.appendChild(compareButton);
-            });
         }
     </script>
 </body>
