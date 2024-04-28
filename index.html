@@ -1,117 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compare Accessibility Tools</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header, footer {
-            background-color: #f1f1f1;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        footer a {
-            margin-right: 10px;
-        }
-        .content {
-            flex: 1;
-            padding: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .check-input {
-            margin: 20px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .check-input input[type="text"] {
-            flex: 1;
-            margin-right: 10px;
-            padding: 10px;
-        }
-        .logo {
-            height: 50px;
-            width: auto;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare Accessibility Tools</title>
+<style>
+    body { font-family: Arial, sans-serif; }
+    header, footer { background-color: #f1f1f1; padding: 10px; text-align: center; }
+    footer { font-size: 0.8em; }
+    footer a { color: #333; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #4CAF50; color: white; }
+    .container { width: 90%; margin: auto; }
+    input[type="url"], button { padding: 10px; }
+    button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #45a049; }
+    .tool-logo { height: 50px; }
+</style>
 </head>
 <body>
-    <header>
-        Browser Extensions, Stand-alone API/Testing, Engine Subscription API, AIM Report, Help
-    </header>
+<header>
+    <nav>
+        <a href="#browser-extensions">Browser Extensions</a> |
+        <a href="#stand-alone">Stand-alone API/Testing</a> |
+        <a href="#subscription-api">Engine Subscription API</a> |
+        <a href="#aim-report">AIM Report</a> |
+        <a href="#help">Help</a>
+    </nav>
+</header>
 
-    <div class="content">
-        <h1>Compare Accessibility Tools</h1>
-        <div class="check-input">
-            <input type="text" placeholder="Enter URL to check accessibility">
-            <button onclick="checkAccessibility()">Check it</button>
-        </div>
-        <h2>List of Accessibility Testing Tools</h2>
-        <img src="dummy-logo.png" alt="WAVE Logo" class="logo">
-        <img src="dummy-logo.png" alt="AChecker Logo" class="logo">
-        <img src="dummy-logo.png" alt="Lighthouse Logo" class="logo">
+<div class="container">
+    <h1>Compare Accessibility Tools</h1>
+    <label for="urlInput">Enter a URL:</label>
+    <input type="url" id="urlInput" placeholder="Enter URL here...">
+    <button onclick="checkAccessibility()">Check It</button>
 
-        <h3>Table of Contents</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Accessible Check</th>
-                    <th>Accessibility tool1</th>
-                    <th>Accessibility tool2</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
-            <tbody id="results">
-                <!-- Results will be inserted here by JavaScript -->
-            </tbody>
-        </table>
-    </div>
+    <h2>List of Accessibility Testing Tools</h2>
+    <img src="dummy-logo.png" alt="WAVE Logo" class="tool-logo">
+    <img src="dummy-logo.png" alt="Achecker Logo" class="tool-logo">
+    <img src="dummy-logo.png" alt="Lighthouse Logo" class="tool-logo">
 
-    <footer>
-        <a href="https://www.unt.edu/index.html">UNT</a>
-        <a href="#">Contact Us</a>
-        <a href="#">About</a>
-        <a href="#">Terms of Use</a>
-    </footer>
+    <h3>Table of Contents</h3>
+    <table id="resultsTable">
+        <tr>
+            <th>Accessible Check</th>
+            <th>Accessibility tool1</th>
+            <th>Accessibility tool2</th>
+            <th>Details</th>
+        </tr>
+        <!-- Results will be inserted here by JavaScript -->
+    </table>
+</div>
 
-    <script>
-        function checkAccessibility() {
-            // This function will handle the accessibility check
-            // Here, it simply adds dummy data to the table
-            var results = document.getElementById('results');
-            results.innerHTML += `
-                <tr>
-                    <td>Accessibility Check Name</td>
-                    <td>5 Issues</td>
-                    <td>3 Issues</td>
-                    <td><button onclick="compareDetails()">Compare</button></td>
-                </tr>
-            `;
-        }
+<footer>
+    <a href="https://www.unt.edu/index.html">UNT</a> |
+    <a href="#">Contact Us</a> |
+    <a href="#">About</a> |
+    <a href="#">Terms of Use</a>
+</footer>
 
-        function compareDetails() {
-            alert("Comparison details will be shown here.");
-        }
-    </script>
+<script>
+function checkAccessibility() {
+    // This is a placeholder function. In a real scenario, you would implement calls to actual APIs.
+    const url = document.getElementById("urlInput").value;
+    if (!url) {
+        alert("Please enter a URL.");
+        return;
+    }
+    // Placeholder results
+    const results = [
+        { check: "Alt Texts", tool1: 5, tool2: 3, details: "Compare" },
+        { check: "Form Labels", tool1: 2, tool2: 2, details: "Compare" }
+    ];
+    const table = document.getElementById("resultsTable");
+    results.forEach(result => {
+        const row = table.insertRow(-1);
+        row.insertCell(0).textContent = result.check;
+        row.insertCell(1).textContent = result.tool1;
+        row.insertCell(2).textContent = result.tool2;
+        const compareButton = document.createElement("button");
+        compareButton.textContent = result.details;
+        compareButton.onclick = function() { alert('Comparing results'); };
+        row.insertCell(3).appendChild(compareButton);
+    });
+}
+</script>
+
 </body>
 </html>
