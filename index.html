@@ -5,30 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Accessibility Tools</title>
     <style>
+        /* Body and Background Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8; /* Light gray/blue background */
+            margin: 0;
+            padding: 20px;
+            color: #333;
         }
 
+        /* Header Styling */
+        h1 {
+            text-align: center;
+            color: #0275d8; /* Bootstrap primary blue */
+        }
+
+        /* Table Styling */
         table {
-            width: 100%;
+            width: 80%;
+            margin: 20px auto; /* Center table and provide spacing */
             border-collapse: collapse;
-            margin-top: 20px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1); /* Subtle shadow for depth */
         }
 
         th, td {
-            border: 1px solid black;
-            padding: 8px;
+            border: 1px solid #dee2e6; /* Lighter border color */
+            padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #0275d8; /* Matching header color */
+            color: white;
         }
+
+        /* Input and Button Styles */
+        input[type="text"] {
+            padding: 8px;
+            width: 70%;
+            margin: 10px auto;
+            display: block;
+        }
+
+        button {
+            background-color: #5cb85c; /* Bootstrap success green */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+        }
+
+        button:hover {
+            background-color: #449d44; /* Darker green on hover */
+        }
+
     </style>
 </head>
 <body>
     <h1>Compare Accessibility Tools</h1>
-    <div>
+    <div style="text-align: center;">
         <input type="text" id="websiteURL" placeholder="Enter URL to check">
         <button onclick="checkAccessibility()">Check It</button>
     </div>
